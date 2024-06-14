@@ -134,3 +134,27 @@ void update_contact_name_surname(vector <Contact> &contacts) {
 
     update_data(data_to_update(), p_updating_contact);
 }
+
+Contact create_contact() {
+    string name, surname, phone_number;
+    age age;
+    Contact contact;
+
+    cout << "Enter data to create contact" << '\n';
+
+    cout << "Enter name: ";
+    getline(cin, name);
+
+    cout << "Enter surname: ";
+    getline(cin, surname);
+
+    cout << "Enter phonenumber: ";
+    getline(cin, phone_number);
+
+    cout << "Enter age: ";
+    cin >> age;
+
+    contact.set_contact_info(name, surname, phone_number, age);
+
+    return contact;
+}

@@ -67,4 +67,6 @@ void update_data(updating_data data_to_update, Contact* p_updating_contact);
 
 void update_contact_name_surname(vector <Contact> &contacts);
 
+Contact create_contact();
+
 #endif
