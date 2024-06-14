@@ -58,6 +58,8 @@ contacts_manager::commands get_command() {
 
     getline(cin, command);
 
+    cout << '\n';
+
     if (command == "show")
         return contacts_manager::SHOW_CONTACTS;
 
@@ -106,6 +108,8 @@ void execute_command(contacts_manager::commands command, vector <Contact> &conta
         case contacts_manager::PROGRAM_EXIT:
             save_contacts(contacts);
 
+            cout << "Good bye:)";
+
             break;
         
         case contacts_manager::UNRECOGNIZED_COMMAND:
@@ -113,6 +117,8 @@ void execute_command(contacts_manager::commands command, vector <Contact> &conta
 
             break;
     }
+
+    cout << endl;
 }
 
 void manager() {
@@ -126,6 +132,4 @@ void manager() {
 
         execute_command(command, contacts_book);
     }
-
-    cout << "Good bye:)" << endl;
 }

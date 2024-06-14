@@ -24,10 +24,10 @@ void make_empty_row() {
 }
 
 void get_contact_name_surname(string &name, string &surname) {
-    cout << "Enter contact name: " << '\n';
+    cout << "Enter contact name: ";
     getline(cin, name);
 
-    cout << "Enter contact surname: " << '\n';
+    cout << "Enter contact surname: ";
     getline(cin, surname);
 }
 
@@ -56,7 +56,7 @@ Contact* search_contact_by_name_surname(vector <Contact> &contacts) {
 updating_data data_to_update() {
     string name_of_updating_data;
 
-    cout << "Enter contact data to update: " << endl;
+    cout << "Enter contact data to update: ";
 
     getline(cin, name_of_updating_data);
 
@@ -78,6 +78,10 @@ updating_data data_to_update() {
         return NO_DATA;
 }
 
+void cin_reset() {
+    cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+}
+
 void update_data(updating_data data_to_update, Contact* p_updating_contact) {
     string updated_data;
     age updated_age;
@@ -88,7 +92,7 @@ void update_data(updating_data data_to_update, Contact* p_updating_contact) {
         return;
     }
 
-    cout << "Enter new data: " << '\n';
+    cout << "Enter new data: ";
     
     switch(data_to_update) {
         case NAME:
@@ -114,6 +118,8 @@ void update_data(updating_data data_to_update, Contact* p_updating_contact) {
         
         case AGE:
             cin >> updated_age;
+
+            cin_reset();
             
             p_updating_contact->set_contact_info(p_updating_contact->get_name(), p_updating_contact->get_surname(), p_updating_contact->get_phone_number(), updated_age);
 
@@ -134,10 +140,6 @@ void update_contact_name_surname(vector <Contact> &contacts) {
     }
 
     update_data(data_to_update(), p_updating_contact);
-}
-
-void cin_reset() {
-    cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
 }
 
 Contact create_contact() {
