@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <limits>
 #include <cstddef>
 #include "contacts.h"
 
@@ -135,6 +136,10 @@ void update_contact_name_surname(vector <Contact> &contacts) {
     update_data(data_to_update(), p_updating_contact);
 }
 
+void cin_reset() {
+    cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+}
+
 Contact create_contact() {
     string name, surname, phone_number;
     age age;
@@ -152,7 +157,10 @@ Contact create_contact() {
     getline(cin, phone_number);
 
     cout << "Enter age: ";
+
     cin >> age;
+
+    cin_reset();
 
     contact.set_contact_info(name, surname, phone_number, age);
 

@@ -21,7 +21,7 @@ namespace contacts_manager {
     const string contacts_file_name = "contacts.txt";
 }
 
-void upload_contact(Contact &contact, ifstream &input_file);
+bool upload_contact(Contact &contact, ifstream &input_file);
 
 void upload_contacts(vector <Contact> &contacts);
 

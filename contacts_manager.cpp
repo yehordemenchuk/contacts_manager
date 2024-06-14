@@ -5,23 +5,23 @@
 #include "contacts.h"
 #include "contacts_manager.h"
 
-void upload_contact(Contact &contact, ifstream &input_file) {
+bool upload_contact(Contact &contact, ifstream &input_file) {
     string name, surname, phone_number;
     age age;
 
-    input_file >> name;
-    
-    input_file >> surname;
+    if (input_file >> name >> surname >> phone_number >> age) {
+        contact.set_contact_info(name, surname, phone_number, age);
 
-    input_file >> phone_number;
+        return true;
+    }
 
-    input_file >> age;
-
-    contact.set_contact_info(name, surname, phone_number, age);
+    else
+        return false;
 }
 
 void upload_contacts(vector <Contact> &contacts) {
     ifstream input_file(contacts_manager::contacts_file_name);
+    Contact contact;
 
     if (!input_file) {
         cout << "File couldn`t be open for reading" << endl;
@@ -29,11 +29,7 @@ void upload_contacts(vector <Contact> &contacts) {
         exit(EXIT_FAILURE);
     }
 
-    while (input_file) {
-        Contact contact;
-
-        upload_contact(contact, input_file);
-
+    while (upload_contact(contact, input_file)) {
         insert_contact(contacts, contact);
     }
 }
@@ -58,7 +54,7 @@ void save_contacts(vector <Contact> &contacts) {
 contacts_manager::commands get_command() {
     string command;
 
-    cout << "Enter command (show, insert, search, update, exit): " << '\n';
+    cout << "Enter command (show, insert, search, update, exit): ";
 
     getline(cin, command);
 
