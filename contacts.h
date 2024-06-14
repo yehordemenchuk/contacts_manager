@@ -8,6 +8,15 @@
 using namespace std;
 
 using age = short;
+
+enum updating_data {
+    NAME,
+    SURNAME,
+    PHONE_NUMBER,
+    AGE,
+    NO_DATA
+};
+
 class Contact {
     string m_name;
     string m_surname;
@@ -25,23 +34,37 @@ public:
         m_age = age;
     }
 
-    void print_name() { cout << "Name: " << m_name << endl; }
+    string get_name() { return m_name; }
 
-    void print_surname() { cout << "Surname: " << m_surname << endl; }
+    string get_surname() { return m_surname; }
 
-    void print_phone_number() { cout << "Phone number: " << m_phone_number << endl; }
+    string get_phone_number() { return m_phone_number; }
 
-    void print_age() { cout << "Age: " << m_age << endl; }
+    age get_age() { return m_age; }
 
     void print_contact_info() {
-        print_name();
+        cout << "Name: " << m_name << '\n';
 
-        print_surname();
+        cout << "Surname: " << m_surname << '\n';
 
-        print_phone_number();
+        cout << "Phone number: " << m_phone_number << '\n';
 
-        print_age();
+        cout << "Age: " << m_age << endl;
     }
 };
+
+void show_contacts(vector <Contact> &contacts);
+
+void insert_contact(vector <Contact> &contacts, Contact &new_contact);
+
+void get_contact_name_surname(string &name, string &surname);
+
+Contact* search_contact_by_name_surname(vector <Contact> &contacts);
+
+updating_data data_to_update();
+
+void update_data(updating_data data_to_update, Contact* p_updating_contact);
+
+void update_contact_name_surname(vector <Contact> &contacts);
 
 #endif
